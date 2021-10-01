@@ -3,6 +3,7 @@ import 'package:desafioframework/Controller/CarrinhoController.dart';
 import 'package:desafioframework/Util/Cores.dart';
 import 'package:desafioframework/Util/Strings.dart';
 import 'package:desafioframework/Util/TamanhoFontes.dart';
+import 'package:desafioframework/Widget/Alerta.dart';
 import 'package:desafioframework/Widget/CardCarrinho.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,6 +112,9 @@ class _VwCarrinhoState extends State<VwCarrinho> {
         onPressed: () async {
           if(carrinhoController.listaItens.length != 0){
             await _pdfCheckout();
+          }
+          else{
+            Alerta.exibirAlert(context, Strings.tituloFalhaCheckout, Strings.subtituloFalhaCheckout);
           }
         },
         child: const Icon(

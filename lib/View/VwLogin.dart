@@ -18,24 +18,19 @@ class _VwLoginState extends State<VwLogin> {
   var loginController = GetIt.I.get<LoginController>();
   TextEditingController emailController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
+  bool _senhaVisivel;
+
+  @override
+  void initState() {
+    super.initState();
+    _senhaVisivel = true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          Strings.tituloTelaLogin,
-          style: TextStyle(
-            fontSize: TamanhoFontes.grande(context),
-            color: Cores.corFundo,
-          ),
-          overflow: TextOverflow.clip,
-        ),
-        centerTitle: true,
-        backgroundColor: Cores.corPrimaria,
-      ),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -74,12 +69,25 @@ class _VwLoginState extends State<VwLogin> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
-                    obscureText: true,
+                  child: TextFormField(
+                    obscureText: _senhaVisivel,
                     controller: senhaController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: Strings.labelLoginSenha,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _senhaVisivel ?
+                          Icons.visibility
+                          : Icons.visibility_off,
+                          color: Cores.corPrimaria,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _senhaVisivel = !_senhaVisivel;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -89,8 +97,9 @@ class _VwLoginState extends State<VwLogin> {
                 Observer(builder: (_){
                   return loginController.loading ?
                     Container(
-                      constraints: BoxConstraints(maxHeight: 75),
-                      height: TamanhoTela.height(context, 0.2),
+                      height: 50,
+                      width: TamanhoTela.height(context, 0.8),
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Center(
                         child: CircularProgressIndicator(
                           valueColor: new AlwaysStoppedAnimation<Color>(Cores.corPrimaria),

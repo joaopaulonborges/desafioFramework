@@ -3,6 +3,7 @@ import 'package:desafioframework/Util/Cores.dart';
 import 'package:desafioframework/Util/Strings.dart';
 import 'package:desafioframework/Util/TamanhoFontes.dart';
 import 'package:desafioframework/Widget/CardProduto.dart';
+import 'package:desafioframework/Widget/InputComLabel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ class VwHome extends StatefulWidget {
 
 class _VwHomeState extends State<VwHome> {
   var homeController = GetIt.I.get<HomeController>();
+  TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -43,25 +45,47 @@ class _VwHomeState extends State<VwHome> {
         elevation: 10.0,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Observer(builder: (_) {
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                itemCount: homeController.listaProdutos.length,
-                itemBuilder: (context, index) {
-                  return CardProduto(
-                    produto: homeController.listaProdutos[index],
-                    index: index,
-                  );
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InputComLabel(
+                textInputType: TextInputType.text,
+                icone: Icons.search,
+                iconeSenha: false,
+                readOnly: false,
+                placeholder: null,
+                label: Strings.labelPesquisar,
+                tamanhoIcone: 25.0,
+                alterarTexto: (value) {
+                  homeController.pesquisarProduto(value);
                 },
-              );
-            }),
-          ],
+                controller: _controller,
+                habilitarInput: true,
+                senha: false,
+                textoErro: null,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Observer(builder: (_) {
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemCount: homeController.listaPesquisaProdutos.length,
+                  itemBuilder: (context, index) {
+                    return CardProduto(
+                      produto: homeController.listaPesquisaProdutos[index],
+                      index: index,
+                    );
+                  },
+                );
+              }),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

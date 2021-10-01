@@ -79,7 +79,7 @@ class _CardCarrinhoState extends State<CardCarrinho> {
                       height: 10.0,
                     ),
                     Container(
-                      width: 85.0,
+                      width: 100.0,
                       padding: EdgeInsets.all(3),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
@@ -101,7 +101,8 @@ class _CardCarrinhoState extends State<CardCarrinho> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 12),
+                            width: 20.0,
+                            margin: EdgeInsets.symmetric(horizontal: 20),
                             padding:
                             EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(

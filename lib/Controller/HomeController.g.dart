@@ -12,13 +12,13 @@ mixin _$HomeController on HomeControllerBase, Store {
   final _$listaProdutosAtom = Atom(name: 'HomeControllerBase.listaProdutos');
 
   @override
-  ObservableList<Produto> get listaProdutos {
+  List<Produto> get listaProdutos {
     _$listaProdutosAtom.reportRead();
     return super.listaProdutos;
   }
 
   @override
-  set listaProdutos(ObservableList<Produto> value) {
+  set listaProdutos(List<Produto> value) {
     _$listaProdutosAtom.reportWrite(value, super.listaProdutos, () {
       super.listaProdutos = value;
     });
@@ -28,13 +28,13 @@ mixin _$HomeController on HomeControllerBase, Store {
       Atom(name: 'HomeControllerBase.listaPesquisaProdutos');
 
   @override
-  ObservableList<Produto> get listaPesquisaProdutos {
+  List<Produto> get listaPesquisaProdutos {
     _$listaPesquisaProdutosAtom.reportRead();
     return super.listaPesquisaProdutos;
   }
 
   @override
-  set listaPesquisaProdutos(ObservableList<Produto> value) {
+  set listaPesquisaProdutos(List<Produto> value) {
     _$listaPesquisaProdutosAtom.reportWrite(value, super.listaPesquisaProdutos,
         () {
       super.listaPesquisaProdutos = value;

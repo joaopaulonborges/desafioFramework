@@ -24,6 +24,21 @@ mixin _$CarrinhoController on CarrinhoControllerBase, Store {
     });
   }
 
+  final _$checkoutPathAtom = Atom(name: 'CarrinhoControllerBase.checkoutPath');
+
+  @override
+  String get checkoutPath {
+    _$checkoutPathAtom.reportRead();
+    return super.checkoutPath;
+  }
+
+  @override
+  set checkoutPath(String value) {
+    _$checkoutPathAtom.reportWrite(value, super.checkoutPath, () {
+      super.checkoutPath = value;
+    });
+  }
+
   final _$CarrinhoControllerBaseActionController =
       ActionController(name: 'CarrinhoControllerBase');
 
@@ -50,9 +65,21 @@ mixin _$CarrinhoController on CarrinhoControllerBase, Store {
   }
 
   @override
+  dynamic fazerCheckout(String value) {
+    final _$actionInfo = _$CarrinhoControllerBaseActionController.startAction(
+        name: 'CarrinhoControllerBase.fazerCheckout');
+    try {
+      return super.fazerCheckout(value);
+    } finally {
+      _$CarrinhoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-listaItens: ${listaItens}
+listaItens: ${listaItens},
+checkoutPath: ${checkoutPath}
     ''';
   }
 }

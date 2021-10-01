@@ -14,7 +14,7 @@ class TamanhoFontes {
   static double pequena(context) {
     return getValueForScreenType<double>(
       context: context,
-      mobile: 16,
+      mobile: 14,
       tablet: 14,
       desktop: 14,
     ).floorToDouble();

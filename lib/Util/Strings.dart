@@ -16,4 +16,7 @@ class Strings{
   static const tituloFalhaLogin = "Falha de login";
   static const subtituloFalhaLogin = "E-mail ou senha incorretos";
   static const labelCarrinhoVazio = "Carrinho vazio";
+  static const labelPesquisar = "Pesquisar...";
+  static const tituloFalhaCheckout = "Falha de checkout";
+  static const subtituloFalhaCheckout = "Seu carrinho está vazio";
 }
